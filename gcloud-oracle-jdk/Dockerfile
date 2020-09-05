@@ -2,10 +2,9 @@ FROM ubuntu:latest
 
 LABEL maintainer="vishal @t a p p i n g t o a d c o m"
 
-# Installing tz data
+# Setting up env tz data
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
-RUN apt-get install -y tzdata
 
 # Upgrade the base distro
 RUN apt-get update && apt-get upgrade -y
