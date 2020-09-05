@@ -2,9 +2,6 @@ FROM ubuntu:latest
 
 LABEL maintainer="vishal @t t a p p i n g t o a d c o m"
 
-# Setting up env tz data
-ARG DEBIAN_FRONTEND=noninteractive
-
 # Upgrade the base distro
 RUN apt-get update && apt-get upgrade -y
 
