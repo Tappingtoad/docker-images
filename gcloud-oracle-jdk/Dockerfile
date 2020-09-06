@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:18.04
 
 LABEL maintainer="vishal @t t a p p i n g t o a d c o m"
 
