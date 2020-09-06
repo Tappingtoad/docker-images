@@ -22,7 +22,7 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     apt-get install -y docker-ce
 
 # Oracle JDK
-RUN apt-get install -y openjdk-13-jdk-headless && \
+RUN apt-get install -y openjdk-13-jdk && \
     apt-get clean
 
 # gcloud sdk
