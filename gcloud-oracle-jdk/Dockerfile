@@ -25,14 +25,17 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     apt-get install -y docker-ce
 
 # Oracle JDK
-RUN apt-get update && \
-    apt-get install -y openjdk-14-jdk && \
+RUN add-apt-repository ppa:linuxuprising/java -y && \
+    apt-get update && \
+    echo oracle-java14-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections && \
+    apt-get install -y oracle-java14-installer && \
+    apt-get install -y oracle-java14-set-default && \
     apt-get clean
 
 # gcloud sdk
 RUN . /etc/os-release && \
     export CLOUD_SDK_REPO="cloud-sdk-${UBUNTU_CODENAME}" && \
-    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
+    echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
     wget https://packages.cloud.google.com/apt/doc/apt-key.gpg && apt-key add apt-key.gpg && rm apt-key.gpg && \
     apt-get update && \
     apt-get install -y \
