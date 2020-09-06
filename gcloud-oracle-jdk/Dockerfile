@@ -36,7 +36,7 @@ RUN add-apt-repository ppa:linuxuprising/java -y && \
 RUN . /etc/os-release && \
     export CLOUD_SDK_REPO="cloud-sdk-${UBUNTU_CODENAME}" && \
     echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+    wget https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
     apt-get update && \
     apt-get install -y \
         google-cloud-sdk \
