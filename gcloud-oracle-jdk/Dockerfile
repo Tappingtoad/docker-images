@@ -1,6 +1,9 @@
-FROM ubuntu:18.04
+FROM ubuntu:latest
 
 LABEL maintainer="vishal @t t a p p i n g t o a d c o m"
+
+# Setting up env tz data
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Upgrade the base distro
 RUN apt-get update && apt-get upgrade -y
@@ -27,6 +30,11 @@ RUN add-apt-repository ppa:linuxuprising/java -y && \
     echo oracle-java14-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections && \
     apt-get install -y oracle-java14-installer && \
     apt-get install -y oracle-java14-set-default && \
+    apt-get clean
+
+# Oracle JDK
+RUN apt-get update && \
+    apt-get install -y openjdk-14-jdk && \
     apt-get clean
 
 # gcloud sdk
