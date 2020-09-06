@@ -22,8 +22,12 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     apt-get install -y docker-ce
 
 # Oracle JDK
-RUN apt-get update && \
-    apt-get install -y openjdk-13-jdk-headless && \
+RUN add-apt-repository ppa:linuxuprising/java -y && \
+    apt-get update && \
+    echo oracle-java13-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections && \
+    apt-get update && \
+    apt-get install -y oracle-java13-installer && \
+    apt-get install -y oracle-java13-set-default && \
     apt-get clean
 
 # gcloud sdk
